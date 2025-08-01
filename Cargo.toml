@@ -1,0 +1,10 @@
+[package]
+name = "mage_arena_image_to_flag"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+color_reducer = "0.3.3"
+image = "0.25.6"
+registry = "1.3.0"
+rfd = "0.15.4"
