@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - run: sudo apt install -y libwayland-client0
+    - run: sudo apt install -y libwayland-dev
     - run: rustup update
     - name: Build
       run: cargo build --verbose --release
