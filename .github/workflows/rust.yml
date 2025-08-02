@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - run: apt install wayland-devel
+    - run: sudo apt install -y wayland-devel
     - run: rustup update
     - name: Build
       run: cargo build --verbose --release
