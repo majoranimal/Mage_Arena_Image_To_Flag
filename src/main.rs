@@ -1,13 +1,13 @@
+
+
 use image::{
-    DynamicImage, ImageReader, Rgb,
-    imageops::{ColorMap, FilterType::Nearest, dither},
+    imageops::{dither, ColorMap, FilterType::Nearest}, DynamicImage, ImageReader, Rgb
 };
 use num::pow;
 use regashii::{Key, KeyName, Registry, ValueName};
 use rfd::FileDialog;
 use std::{
-    env::{self, home_dir},
-    path::Path,
+    env::{self, home_dir}, path::Path
 };
 
 fn main() {
@@ -52,19 +52,18 @@ fn get_and_load_image() -> DynamicImage {
         .decode()
         .expect("Failed to read the image");
     println!("File opened");
+
     return flag_image;
 }
 
 // Converts the image to the correct format for the in-game flag
 fn image_to_flag_format(flag_image: DynamicImage) -> image::ImageBuffer<Rgb<u8>, Vec<u8>> {
     // Convert the image to the correct resolution for the flag
-    let mut flag_image = flag_image.resize_exact(100, 66, Nearest); //.to_rgb8();
+    let flag_image = flag_image.resize_exact(100, 66, Nearest); //.to_rgb8();
     println!("Image resized");
 
     // Converts the image to an RGB image buffer (For the dither function)
-    let flag_image = flag_image
-        .as_mut_rgb8()
-        .expect("Failed to convert image to RGB");
+    let flag_image = &mut flag_image.into_rgb8();
     println!("Image converted to RGB");
 
     // Dithers the image using the games colormap
